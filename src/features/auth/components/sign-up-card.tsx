@@ -82,6 +82,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
         <p className="text-xs text-muted-foreground">
           Already have an account?{' '}
           <Button
+            type="button"
             variant={'link'}
             onClick={() => setState('signIn')}
             className="text-xs text-sky-700 hover:underline cursor-pointer p-0">
