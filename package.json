@@ -37,6 +37,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
+      "bun run lint",
       "bun run format:fix"
     ]
   }
