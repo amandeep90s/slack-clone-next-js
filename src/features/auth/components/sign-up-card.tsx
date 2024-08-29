@@ -17,9 +17,11 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [pending, setPending] = useState(false);
 
   const onProviderSignIn = (value: 'github' | 'google') => {
-    signIn(value);
+    setPending(true);
+    signIn(value).finally(() => setPending(false));
   };
 
   return (
@@ -69,7 +71,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             className="w-full relative"
             variant={'outline'}
             size={'lg'}
-            disabled={false}
+            disabled={pending}
             onClick={() => onProviderSignIn('google')}>
             <FcGoogle className="size-5 absolute top-3 left-2.5" />
             Continue with Google
@@ -79,7 +81,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             className="w-full relative"
             variant={'outline'}
             size={'lg'}
-            disabled={false}
+            disabled={pending}
             onClick={() => onProviderSignIn('github')}>
             <FaGithub className="size-5 absolute top-3 left-2.5" />
             Continue with Github
