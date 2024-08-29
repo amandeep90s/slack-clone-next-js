@@ -18,7 +18,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleProviderSignIn = (value: 'github' | 'google') => {
+  const onProviderSignIn = (value: 'github' | 'google') => {
     signIn(value);
   };
 
@@ -70,7 +70,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             variant={'outline'}
             size={'lg'}
             disabled={false}
-            onClick={() => {}}>
+            onClick={() => onProviderSignIn('google')}>
             <FcGoogle className="size-5 absolute top-3 left-2.5" />
             Continue with Google
           </Button>
@@ -80,7 +80,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             variant={'outline'}
             size={'lg'}
             disabled={false}
-            onClick={() => handleProviderSignIn('github')}>
+            onClick={() => onProviderSignIn('github')}>
             <FaGithub className="size-5 absolute top-3 left-2.5" />
             Continue with Github
           </Button>
