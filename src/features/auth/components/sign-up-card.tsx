@@ -15,6 +15,7 @@ interface SignUpCardProps {
 
 const SignUpCard = ({ setState }: SignUpCardProps) => {
   const { signIn } = useAuthActions();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -32,7 +33,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
     }
 
     setPending(true);
-    signIn('password', { email, password, flow: 'signUp' })
+    signIn('password', { name, email, password, flow: 'signUp' })
       .catch(() => setError('Something went wrong'))
       .finally(() => setPending(false));
   };
@@ -61,11 +62,19 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
           onSubmit={onPasswordSignUp}
           className="space-y-2.5">
           <Input
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+            placeholder="Full name"
+            disabled={pending}
+            required
+          />
+          <Input
             type="email"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             placeholder="Email"
             disabled={pending}
+            autoComplete="email"
             required
           />
           <Input
@@ -74,6 +83,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             onChange={({ target }) => setPassword(target.value)}
             placeholder="Password"
             disabled={pending}
+            autoComplete="new-password"
             required
           />
           <Input
@@ -82,6 +92,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
             onChange={({ target }) => setConfirmPassword(target.value)}
             placeholder="Confirm password"
             disabled={pending}
+            autoComplete="new-password"
             required
           />
           <Button
