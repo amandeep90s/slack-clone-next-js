@@ -33,3 +33,7 @@ Key Features:
 🚀 Deployment on Vercel
 
 🎨 Shadcn UI & Tailwind CSS
+
+## For Backend use Convex platform
+
+<https://docs.convex.dev/home>
