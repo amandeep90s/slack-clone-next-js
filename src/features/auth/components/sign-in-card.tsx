@@ -39,12 +39,14 @@ const SignInCard = ({ setState }: SignInCardProps) => {
         <CardTitle>Login to continue</CardTitle>
         <CardDescription>Use your email or other service to continue</CardDescription>
       </CardHeader>
+
       {!!error && (
-        <div className="bg-destructive/15 p-3 rounded-md flex  items-center gap-x-2 text-sm text-destructive mb-6">
+        <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
           <TriangleAlert className="size-4" />
           {error}
         </div>
       )}
+
       <CardContent className="space-y-5 px-0 pb-0">
         <form
           onSubmit={onPasswordSignIn}
@@ -54,7 +56,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             placeholder="Email"
-            disabled={false}
+            disabled={pending}
             required
           />
           <Input
@@ -62,14 +64,14 @@ const SignInCard = ({ setState }: SignInCardProps) => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
             placeholder="Password"
-            disabled={false}
+            disabled={pending}
             required
           />
           <Button
             type="submit"
             className="w-full"
             size={'lg'}
-            disabled={false}>
+            disabled={pending}>
             Continue
           </Button>
         </form>
