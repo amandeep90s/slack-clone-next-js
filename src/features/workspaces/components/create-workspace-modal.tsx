@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { useCreateWorkspace } from '../api/use-create-workspace';
 import { useCreateWorkspaceModal } from '../store/use-create-workspace-modal';
 
@@ -26,6 +27,7 @@ const CreateWorkspaceModal = () => {
       { name },
       {
         onSuccess(workspaceId) {
+          toast.success('Workspace created');
           handleClose();
           router.push(`/workspace/${workspaceId}`);
         }
