@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -25,8 +25,9 @@ const CreateWorkspaceModal = () => {
     mutate(
       { name },
       {
-        onSuccess(data) {
-          router.push(`/workspace/${data}`);
+        onSuccess(workspaceId) {
+          handleClose();
+          router.push(`/workspace/${workspaceId}`);
         }
       }
     );
@@ -40,6 +41,7 @@ const CreateWorkspaceModal = () => {
         <DialogHeader>
           <DialogTitle>Add a workspace</DialogTitle>
         </DialogHeader>
+        <DialogDescription className="hidden"></DialogDescription>
         <form
           onSubmit={handleSubmit}
           className="space-y-4">
