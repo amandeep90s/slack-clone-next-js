@@ -3,11 +3,13 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useCreateWorkspace } from '../api/use-create-workspace';
 import { useCreateWorkspaceModal } from '../store/use-create-workspace-modal';
 
 const CreateWorkspaceModal = () => {
+  const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModal();
   const [name, setName] = useState('');
 
@@ -15,7 +17,7 @@ const CreateWorkspaceModal = () => {
 
   const handleClose = () => {
     setOpen(false);
-    // TODO: Clean form
+    setName('');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +26,7 @@ const CreateWorkspaceModal = () => {
       { name },
       {
         onSuccess(data) {
-          console.log(data);
+          router.push(`/workspace/${data}`);
         }
       }
     );
